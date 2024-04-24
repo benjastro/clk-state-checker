@@ -1,3 +1,7 @@
+CLK State Checker v1.8Github
+-view commit for logs
+-remove list txt file
+
 CLK State Checker v1.7
 geo
 ==
