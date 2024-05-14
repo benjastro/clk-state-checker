@@ -1,3 +1,49 @@
+CLK State Checker v1.9
+Added u65 states
+AL
+AR
+AZ
+CA
+CO
+CT
+DC
+DE
+FL
+GA
+IA
+ID
+IL
+IN
+KS
+KY
+LA
+MA
+ME
+MI
+MN
+MO
+MS
+MT
+NC
+NE
+NH
+NJ
+NV
+NY
+OH
+OK
+PA
+RI
+SC
+SD
+TN
+TX
+UT
+VA
+WI
+WV
+WY
+
 CLK State Checker v1.8Github
 -view commit for logs
 -remove list txt file

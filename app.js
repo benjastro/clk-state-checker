@@ -9,7 +9,8 @@ medicare_states = ["AL",
     "PA",
     "TN",
     "TX",
-    "VA",]
+    "VA",
+]
 
 aca_states = [
     "AZ",
@@ -34,7 +35,53 @@ aca_states = [
     "NH",
     "UT",
     "WI"
-    ]
+]
+
+u65_states = [
+    "AL",
+    "AR",
+    "AZ",
+    "CA",
+    "CO",
+    "CT",
+    "DC",
+    "DE",
+    "FL",
+    "GA",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
+    "LA",
+    "MA",
+    "ME",
+    "MI",
+    "MN",
+    "MO",
+    "MS",
+    "MT",
+    "NC",
+    "NE",
+    "NH",
+    "NJ",
+    "NV",
+    "NY",
+    "OH",
+    "OK",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VA",
+    "WI",
+    "WV",
+    "WY",
+]
     
 resultElement = document.getElementById('result')
 
@@ -45,26 +92,28 @@ function check(){
     resultElement.textContent = "Loading..."
     resultElement.style.color = "black"
 
-    if (!(medicare_states.includes(inputtedState) || aca_states.includes(inputtedState))) {
+    if (!(medicare_states.includes(inputtedState) || aca_states.includes(inputtedState) || u65_states.includes(inputtedState))) {
         resultElement.textContent = inputtedState + " STATE IS NOT ACCEPTED FOR MEDICARE AND ACA"
         resultElement.style.color = "red"
         return
     }
 
     resultElement.style.color = "green"
-    
-    if (medicare_states.includes(inputtedState) && aca_states.includes(inputtedState)) {
-        resultElement.textContent = inputtedState + " STATE IS ACCEPTED FOR MEDICARE AND ACA"
-        return
-    }
+
+    resultElement.textContent = inputtedState + " STATE IS ACCEPTED FOR"
 
     if (medicare_states.includes(inputtedState)) {
-        resultElement.textContent = inputtedState + " STATE IS ACCEPTED FOR MEDICARE"
+        resultElement.textContent += " (MEDICARE)"
         return
     }
 
     if (aca_states.includes(inputtedState)) {
-        resultElement.textContent = inputtedState + " STATE IS ACCEPTED FOR ACA"
+        resultElement.textContent = inputtedState + " (ACA)"
+        return
+    }
+
+    if (u65_states.includes(inputtedState)) {
+        resultElement.textContent = inputtedState + " (U65)"
         return
     }
     
