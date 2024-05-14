@@ -107,11 +107,11 @@ function check(){
     }
 
     if (aca_states.includes(inputtedState)) {
-        resultElement.textContent = inputtedState + " (ACA)"
+        resultElement.textContent += inputtedState + " (ACA)"
     }
 
     if (u65_states.includes(inputtedState)) {
-        resultElement.textContent = inputtedState + " (U65)"
+        resultElement.textContent += inputtedState + " (U65)"
     }
     
 }
