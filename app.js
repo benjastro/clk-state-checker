@@ -93,7 +93,7 @@ function check(){
     resultElement.style.color = "black"
 
     if (!(medicare_states.includes(inputtedState) || aca_states.includes(inputtedState) || u65_states.includes(inputtedState))) {
-        resultElement.textContent = inputtedState + " STATE IS NOT ACCEPTED FOR MEDICARE AND ACA AND U65"
+        resultElement.textContent = inputtedState + " STATE IS NOT ACCEPTED FOR (MEDICARE) (ACA) (U65)"
         resultElement.style.color = "red"
         return
     }
