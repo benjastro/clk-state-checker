@@ -104,17 +104,14 @@ function check(){
 
     if (medicare_states.includes(inputtedState)) {
         resultElement.textContent += " (MEDICARE)"
-        return
     }
 
     if (aca_states.includes(inputtedState)) {
         resultElement.textContent = inputtedState + " (ACA)"
-        return
     }
 
     if (u65_states.includes(inputtedState)) {
         resultElement.textContent = inputtedState + " (U65)"
-        return
     }
     
 }
