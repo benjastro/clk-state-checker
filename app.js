@@ -1,12 +1,32 @@
-medicare_states = ["AL",
+medicare_states = [
+    "AL",
+    "AR",
+    "AZ",
     "CO",
+    "DE",
     "FL",
     "GA",
+    "IA",
+    "ID",
+    "IL",
+    "IN",
+    "KS",
+    "KY",
     "LA",
+    "MD",
+    "ME",
     "MI",
+    "MO",
+    "MS",
+    "NC",
+    "NE",
+    "NJ",
+    "NM",
     "NY",
     "OH",
+    "OK",
     "PA",
+    "SC",
     "TN",
     "TX",
     "VA",
@@ -35,7 +55,7 @@ aca_states = [
     "NH",
     "UT",
     "WI"
-]
+]   
 
 u65_states = [
     "AL",
