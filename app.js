@@ -1,3 +1,57 @@
+ingroups_data = new Map();
+
+ingroups_data.set("ClickMedicare", {
+    id: "ClickMedicare",
+    hex: "PINK",
+    label: "PINK"
+})
+
+ingroups_data.set("ClickU65", {
+    id: "ClickU65",
+    hex: "YELLOW",
+    label: "YELLOW"
+})
+
+ingroups_data.set("IMSACA", {
+    id: "IMSACA",
+    hex: "GREEN",
+    label: "GREEN"
+})
+
+ingroups_data.set("SB_Medicare", {
+    id: "SB_Medicare",
+    hex: "RED",
+    label: "RED"
+})
+
+ingroups_data.set("SB_NonQua", {
+    id: "SB_NonQua",
+    hex: "BLUE",
+    label: "BLUE"
+})
+
+ingroups_data.set("U65JAMES", {
+    id: "U65JAMES",
+    hex: "PURPLE",
+    label: "PURPLE"
+})
+
+ingroups_data.forEach((value, key, map) => {
+    let idText = document.createElement("td");
+    idText.innerHTML = value.id
+    let colorBar = document.createElement("td");
+    colorBar.style.backgroundColor = value.hex
+    colorBar.style.width = "60px"
+    let colorText = document.createElement("td");
+    colorText.innerHTML = value.hex
+
+    let tableRow = document.createElement("tr")
+    tableRow.appendChild(idText)
+    tableRow.appendChild(colorBar)
+    tableRow.appendChild(colorText)
+    document.getElementById("ingroups-div").appendChild(tableRow)
+})
+
 medicare_states = [
     "AL",
     "AR",
