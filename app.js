@@ -119,6 +119,7 @@ u65_states = [
     "CO",
     "CT",
     "DC",
+    "DE",
     "FL",
     "GA",
     "IA",
@@ -148,6 +149,7 @@ u65_states = [
     "TX",
     "UT",
     "VA",
+    "WI",
     "WV",
     "WY",
 ]
