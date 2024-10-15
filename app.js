@@ -52,137 +52,70 @@ ingroups_data.forEach((value, key, map) => {
     document.getElementById("ingroups-div").appendChild(tableRow)
 })
 
-medicare_states = [
-    "AL",
-    "AR",
-    "AZ",
-    "CO",
-    "DE",
-    "FL",
-    "GA",
-    "IA",
-    "ID",
-    "IL",
-    "IN",
-    "KS",
-    "KY",
-    "LA",
-    "MD",
-    "ME",
-    "MI",
-    "MO",
-    "MS",
-    "NC",
-    "NE",
-    "NJ",
-    "NM",
-    "NY",
-    "OH",
-    "OK",
-    "PA",
-    "SC",
-    "TN",
-    "TX",
-    "VA",
-]
+let jsonUrl = "https://script.google.com/macros/s/AKfycbxJ51x1dsBxidtbWY3_0rmg3S5eXx-2mEUeYCZ4aQbjCNalav-kT9hauoGqpM0BqxuC/exec";
 
-aca_states = [
-    "AZ",
-    "FL",
-    "GA",
-    "IA",
-    "IL",
-    "IN",
-    "KS",
-    "LA",
-    "MO",
-    "MS",
-    "NC",
-    "OH",
-    "OK",
-    "SC",
-    "TN",
-    "TX",
-    "AL",
-    "MI",
-    "NE",
-    "NH",
-    "UT",
-    "WI"
-]   
+let jsonData = {};
 
-u65_states = [
-    "AL",
-    "AR",
-    "AZ",
-    "CA",
-    "CO",
-    "CT",
-    "DC",
-    "DE",
-    "FL",
-    "GA",
-    "IA",
-    "ID",
-    "IL",
-    "IN",
-    "KS",
-    "KY",
-    "LA",
-    "MA",
-    "ME",
-    "MI",
-    "MN",
-    "MO",
-    "MS",
-    "MT",
-    "NC",
-    "NE",
-    "NH",
-    "NV",
-    "NY",
-    "OH",
-    "OK",
-    "RI",
-    "SC",
-    "TN",
-    "TX",
-    "UT",
-    "VA",
-    "WI",
-    "WV",
-    "WY",
-]
+resultElement = document.getElementById('result');
+
+function errorDisplay(text, error) {
+    console.error(error);
+    resultElement.textContent = text;
+    resultElement.style.color = "red";
+}
+
+function finishLoading() {
+    document.getElementById('form').style.display = "block";
+    resultElement.style.color = "black";
+    resultElement.textContent = "";
+}
+
     
 resultElement = document.getElementById('result')
 
-
 function check(){
-    inputtedState = document.getElementById('state').value.trim().toUpperCase()
+    let is_state_exists = false;
+    inputtedState = document.getElementById('state').value.trim().toUpperCase();
 
-    resultElement.textContent = "Loading..."
-    resultElement.style.color = "black"
+    resultElement.textContent = "Loading...";
+    resultElement.style.color = "black";
 
-    if (!(medicare_states.includes(inputtedState) || aca_states.includes(inputtedState) || u65_states.includes(inputtedState))) {
-        resultElement.textContent = inputtedState + " STATE IS NOT ACCEPTED FOR (MEDICARE) (ACA) (U65)"
-        resultElement.style.color = "red"
-        return
+    if (!jsonData) {
+        errorDisplay("An error has occured!\n Please retry!", error);
+        return;
     }
 
-    resultElement.style.color = "green"
+    Object.entries(jsonData).forEach(([key, value]) => {
 
-    resultElement.textContent = inputtedState + " STATE IS ACCEPTED FOR"
+        let hasState = value.find(state => state.code.includes(inputtedState));
+        
+        if (hasState) {
+            if (!is_state_exists) {
+                is_state_exists = true;
+                resultElement.textContent = inputtedState + " STATE IS ACCEPTED FOR";
+            }
 
-    if (medicare_states.includes(inputtedState)) {
-        resultElement.textContent += " (MEDICARE)"
-    }
+            resultElement.textContent += " (" + key + ")";
+            resultElement.style.color = "green";
+        }
+    })
 
-    if (aca_states.includes(inputtedState)) {
-        resultElement.textContent += " (ACA)"
-    }
-
-    if (u65_states.includes(inputtedState)) {
-        resultElement.textContent += " (U65)"
-    }
+    if (!is_state_exists) {
+        resultElement.textContent = inputtedState + " STATE IS NOT ACCEPTED FOR ALL";
+        resultElement.style.color = "red";
+    } 
     
 }
+
+fetch(jsonUrl)
+    .then(response => response.json()
+        .then((data) => {
+            jsonData = data;
+            finishLoading();
+        })
+    )
+    .catch(error => errorDisplay("An error has occured!\n Please retry!", error));
+
+
+resultElement.textContent = "Loading...";
+resultElement.style.color = "black";
